@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
 
 class InitialController extends GetxController {
-  final bool isUserLoggedIn = true;
+  final bool isUserLoggedIn = false;
 
   @override
   void onReady() {
@@ -15,7 +15,7 @@ class InitialController extends GetxController {
   }
 
   Future<void> _initNavigationFlow() async {
-    await Future<dynamic>.delayed(const Duration(seconds: 2));
+    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
 
     await Get.offNamed<dynamic>(
       isUserLoggedIn ? Routes.home : Routes.login,
