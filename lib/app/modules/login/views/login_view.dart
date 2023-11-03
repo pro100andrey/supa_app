@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data/validator/form_validators.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
@@ -21,7 +22,7 @@ class LoginView extends GetView<LoginController> {
               children: [
                 TextFormField(
                   controller: controller.emailController,
-                  validator: controller.validateEmail,
+                  validator: validateEmail,
                   decoration: const InputDecoration(
                     labelText: 'Email',
                     icon: Padding(
@@ -34,8 +35,8 @@ class LoginView extends GetView<LoginController> {
                 Obx(
                   () => TextFormField(
                     controller: controller.passwordController,
-                    validator: controller.validatePassword,
-                    obscureText: controller.passwordInvisible.value,
+                    validator: validatePassword,
+                    obscureText: !controller.isPasswordVisible,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       icon: const Padding(
@@ -44,9 +45,11 @@ class LoginView extends GetView<LoginController> {
                       ),
                       suffixIcon: GestureDetector(
                         onTap: controller.togglePasswordInvisible,
-                        child: Icon(controller.passwordInvisible.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,),
+                        child: Icon(
+                          controller.isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
                       ),
                     ),
                   ),

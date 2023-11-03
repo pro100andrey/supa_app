@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../data/validator/form_validators.dart';
 import '../controllers/sign_up_controller.dart';
 
 class SignUpView extends GetView<SignUpController> {
@@ -21,7 +22,7 @@ class SignUpView extends GetView<SignUpController> {
               children: [
                 TextFormField(
                   controller: controller.emailController,
-                  validator: controller.validateEmail,
+                  validator: validateEmail,
                   decoration: const InputDecoration(
                     labelText: 'Email',
                     icon: Padding(
@@ -34,8 +35,8 @@ class SignUpView extends GetView<SignUpController> {
                 Obx(
                   () => TextFormField(
                     controller: controller.passwordController,
-                    validator: controller.validatePassword,
-                    obscureText: controller.passwordInvisible.value,
+                    validator: validatePassword,
+                    obscureText: !controller.isPasswordVisible,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       icon: const Padding(
@@ -45,9 +46,9 @@ class SignUpView extends GetView<SignUpController> {
                       suffixIcon: GestureDetector(
                         onTap: controller.togglePasswordInvisible,
                         child: Icon(
-                          controller.passwordInvisible.value
-                              ? Icons.visibility_off
-                              : Icons.visibility,
+                          controller.isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                         ),
                       ),
                     ),
@@ -57,8 +58,11 @@ class SignUpView extends GetView<SignUpController> {
                 Obx(
                   () => TextFormField(
                     controller: controller.passwordConfirmController,
-                    validator: controller.validatePasswordConfirm,
-                    obscureText: controller.passwordInvisible.value,
+                    validator: (confirmPassword) => validatePasswordConfirm(
+                      controller.passwordController.text,
+                      confirmPassword,
+                    ),
+                    obscureText: !controller.isPasswordVisible,
                     decoration: InputDecoration(
                       labelText: 'Confirm Password',
                       icon: const Padding(
@@ -68,9 +72,9 @@ class SignUpView extends GetView<SignUpController> {
                       suffixIcon: GestureDetector(
                         onTap: controller.togglePasswordInvisible,
                         child: Icon(
-                          controller.passwordInvisible.value
-                              ? Icons.visibility_off
-                              : Icons.visibility,
+                          controller.isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                         ),
                       ),
                     ),
