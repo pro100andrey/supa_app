@@ -39,15 +39,4 @@ class SignUpController extends GetxController {
 
     await Future<dynamic>.delayed(const Duration(seconds: 1));
   }
-  // String? validatePasswordConfirm(String? passwordConfirm) {
-  //   if (passwordConfirm == null || passwordConfirm.isEmpty) {
-  //     return 'Password confirmation is required.';
-  //   }
-
-  //   if (passwordConfirm != passwordController.text) {
-  //     return 'Passwords do not match.';
-  //   }
-
-  //   return null;
-  // }
 }
