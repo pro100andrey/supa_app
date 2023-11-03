@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
-import '../controllers/login_controller.dart';
+import '../controllers/sign_up_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+class SignUpView extends GetView<SignUpController> {
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Login'),
+          title: const Text('Register'),
           centerTitle: true,
         ),
         body: Form(
@@ -44,29 +44,42 @@ class LoginView extends GetView<LoginController> {
                       ),
                       suffixIcon: GestureDetector(
                         onTap: controller.togglePasswordInvisible,
-                        child: Icon(controller.passwordInvisible.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,),
+                        child: Icon(
+                          controller.passwordInvisible.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Obx(
+                  () => TextFormField(
+                    controller: controller.passwordConfirmController,
+                    validator: controller.validatePasswordConfirm,
+                    obscureText: controller.passwordInvisible.value,
+                    decoration: InputDecoration(
+                      labelText: 'Confirm Password',
+                      icon: const Padding(
+                        padding: EdgeInsets.only(top: 15),
+                        child: Icon(Icons.lock),
+                      ),
+                      suffixIcon: GestureDetector(
+                        onTap: controller.togglePasswordInvisible,
+                        child: Icon(
+                          controller.passwordInvisible.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: controller.login,
-                  child: const Text('Login'),
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  children: [
-                    const Text("Don't have an account?"),
-                    const SizedBox(width: 8),
-                    TextButton(
-                      onPressed: () async =>
-                          Get.toNamed<dynamic>(Routes.signUp),
-                      child: const Text('Sign Up'),
-                    ),
-                  ],
+                  onPressed: controller.signUp,
+                  child: const Text('Sign Up'),
                 ),
               ],
             ),
