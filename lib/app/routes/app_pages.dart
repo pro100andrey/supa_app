@@ -6,6 +6,8 @@ import '../modules/initial/bindings/initial_binding.dart';
 import '../modules/initial/views/initial_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/sign_up/bindings/sign_up_binding.dart';
+import '../modules/sign_up/views/sign_up_view.dart';
 
 part 'app_routes.dart';
 
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.login,
       page: () => const LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage<void>(
+      name: _Paths.signUp,
+      page: () => const SignUpView(),
+      binding: SignUpBinding(),
     ),
   ];
 }
