@@ -64,11 +64,9 @@ class LoginView extends GetView<LoginController> {
                   alignment: WrapAlignment.center,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    const Flexible(
-                      child: Text(
-                        "Don't have an account?",
-                        textAlign: TextAlign.center,
-                      ),
+                    const Text(
+                      "Don't have an account?",
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(width: 8),
                     TextButton(
