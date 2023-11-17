@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../data/validator/form_validators.dart';
@@ -36,17 +35,17 @@ class SignUpView extends GetView<SignUpController> {
                   () => TextFormField(
                     controller: controller.passwordController,
                     validator: validatePassword,
-                    obscureText: !controller.isPasswordVisible,
+                    obscureText: controller.isObscureText,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       icon: const Padding(
                         padding: EdgeInsets.only(top: 15),
                         child: Icon(Icons.lock),
                       ),
-                      suffixIcon: GestureDetector(
-                        onTap: controller.togglePasswordInvisible,
-                        child: Icon(
-                          controller.isPasswordVisible
+                      suffixIcon: IconButton(
+                        onPressed: controller.togglePasswordInvisible,
+                        icon: Icon(
+                          controller.isObscureText
                               ? Icons.visibility
                               : Icons.visibility_off,
                         ),
@@ -62,17 +61,17 @@ class SignUpView extends GetView<SignUpController> {
                       controller.passwordController.text,
                       confirmPassword,
                     ),
-                    obscureText: !controller.isPasswordVisible,
+                    obscureText: !controller.isObscureText,
                     decoration: InputDecoration(
                       labelText: 'Confirm Password',
                       icon: const Padding(
                         padding: EdgeInsets.only(top: 15),
                         child: Icon(Icons.lock),
                       ),
-                      suffixIcon: GestureDetector(
-                        onTap: controller.togglePasswordInvisible,
-                        child: Icon(
-                          controller.isPasswordVisible
+                      suffixIcon: IconButton(
+                        onPressed: controller.togglePasswordInvisible,
+                        icon: Icon(
+                          controller.isObscureText
                               ? Icons.visibility
                               : Icons.visibility_off,
                         ),

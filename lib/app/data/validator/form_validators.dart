@@ -26,6 +26,7 @@ import 'package:get/get.dart';
     return null;
   }
 
+  /// Validates the password confirmation.
   String? validatePasswordConfirm(String? password, String? passwordConfirm,) {
     if (passwordConfirm == null || passwordConfirm.isEmpty) {
       return 'Password confirmation is required.';

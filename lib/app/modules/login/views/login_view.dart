@@ -36,17 +36,17 @@ class LoginView extends GetView<LoginController> {
                   () => TextFormField(
                     controller: controller.passwordController,
                     validator: validatePassword,
-                    obscureText: !controller.isPasswordVisible,
+                    obscureText: !controller.isObscureText,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       icon: const Padding(
                         padding: EdgeInsets.only(top: 15),
                         child: Icon(Icons.lock),
                       ),
-                      suffixIcon: GestureDetector(
-                        onTap: controller.togglePasswordInvisible,
-                        child: Icon(
-                          controller.isPasswordVisible
+                      suffixIcon: IconButton(
+                        onPressed: controller.togglePasswordInvisible,
+                        icon: Icon(
+                          controller.isObscureText
                               ? Icons.visibility
                               : Icons.visibility_off,
                         ),
@@ -60,9 +60,16 @@ class LoginView extends GetView<LoginController> {
                   child: const Text('Login'),
                 ),
                 const SizedBox(height: 24),
-                Row(
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    const Text("Don't have an account?"),
+                    const Flexible(
+                      child: Text(
+                        "Don't have an account?",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                     const SizedBox(width: 8),
                     TextButton(
                       onPressed: () async =>

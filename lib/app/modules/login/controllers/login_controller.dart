@@ -5,9 +5,9 @@ class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final _isPasswordVisible = false.obs;
+  final _isObscureText = true.obs;
 
-  bool get isPasswordVisible => _isPasswordVisible.value;
+  bool get isObscureText => _isObscureText.value;
 
   /// Logs the user in.
   Future<void> login() async {
@@ -23,13 +23,13 @@ class LoginController extends GetxController {
   }
 
   void togglePasswordInvisible() {
-    _isPasswordVisible.value = !_isPasswordVisible.value;
+    _isObscureText.value = !_isObscureText.value;
   }
-  
+
   /// Simulates a login request. (Delete this after implementing supabase auth.)
   Future<void> _login(String email, String password) async {
-    print('Email: $email');
-    print('Password: $password');
+    debugPrint('Email: $email');
+    debugPrint('Password: $password');
 
     await Future<dynamic>.delayed(const Duration(seconds: 1));
   }

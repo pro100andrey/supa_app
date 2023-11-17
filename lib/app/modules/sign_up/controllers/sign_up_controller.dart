@@ -5,10 +5,11 @@ class SignUpController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
-  final _isPasswordVisible = false.obs;
 
-  bool get isPasswordVisible => _isPasswordVisible.value;
+  final formKey = GlobalKey<FormState>();
+
+  final _isObscureText = true.obs;
+  bool get isObscureText => _isObscureText.value;
 
   /// Register the user.
   Future<void> signUp() async {
@@ -25,7 +26,7 @@ class SignUpController extends GetxController {
   }
 
   void togglePasswordInvisible() {
-    _isPasswordVisible.value = !_isPasswordVisible.value;
+    _isObscureText.value = !_isObscureText.value;
   }
 
   Future<void> _signUp(
@@ -33,9 +34,9 @@ class SignUpController extends GetxController {
     String password,
     String passwordConfirm,
   ) async {
-    print('Email: $email');
-    print('Password: $password');
-    print('Password Confirm: $passwordConfirm');
+    debugPrint('Email: $email');
+    debugPrint('Password: $password');
+    debugPrint('Password Confirm: $passwordConfirm');
 
     await Future<dynamic>.delayed(const Duration(seconds: 1));
   }
