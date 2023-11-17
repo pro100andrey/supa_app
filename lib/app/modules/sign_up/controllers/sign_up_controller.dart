@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignUpController extends GetxController {
   final emailController = TextEditingController();
@@ -15,29 +16,22 @@ class SignUpController extends GetxController {
   Future<void> signUp() async {
     final email = emailController.text;
     final password = passwordController.text;
-    final passwordConfirm = passwordConfirmController.text;
 
     if (!formKey.currentState!.validate()) {
       return;
     }
 
     // Replace this with supabase auth.
-    await _signUp(email, password, passwordConfirm);
+    final res = await Supabase.instance.client.auth.signUp(
+      email: email,
+      password: password,
+    );
+
+    final session = res.session;
+    final user = res.user;
   }
 
   void togglePasswordInvisible() {
     _isObscureText.value = !_isObscureText.value;
-  }
-
-  Future<void> _signUp(
-    String email,
-    String password,
-    String passwordConfirm,
-  ) async {
-    debugPrint('Email: $email');
-    debugPrint('Password: $password');
-    debugPrint('Password Confirm: $passwordConfirm');
-
-    await Future<dynamic>.delayed(const Duration(seconds: 1));
   }
 }

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
-  final _isObscureText = true.obs;
 
+  final formKey = GlobalKey<FormState>();
+
+  bool get isBusy => _isBusy.value;
+  final  _isBusy = false.obs;
+
+  final _isObscureText = true.obs;
   bool get isObscureText => _isObscureText.value;
 
   /// Logs the user in.
@@ -18,19 +23,17 @@ class LoginController extends GetxController {
       return;
     }
 
-    // Replace this with supabase auth.
-    await _login(email, password);
+    _isBusy.value = true;
+
+    await Supabase.instance.client.auth.signInWithPassword(
+      email: email,
+      password: password,
+    );
+
+    _isBusy.value = false;
   }
 
   void togglePasswordInvisible() {
     _isObscureText.value = !_isObscureText.value;
-  }
-
-  /// Simulates a login request. (Delete this after implementing supabase auth.)
-  Future<void> _login(String email, String password) async {
-    debugPrint('Email: $email');
-    debugPrint('Password: $password');
-
-    await Future<dynamic>.delayed(const Duration(seconds: 1));
   }
 }

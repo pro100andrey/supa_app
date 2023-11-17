@@ -61,7 +61,7 @@ class SignUpView extends GetView<SignUpController> {
                       controller.passwordController.text,
                       confirmPassword,
                     ),
-                    obscureText: !controller.isObscureText,
+                    obscureText: controller.isObscureText,
                     decoration: InputDecoration(
                       labelText: 'Confirm Password',
                       icon: const Padding(

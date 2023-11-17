@@ -55,9 +55,11 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: controller.login,
-                  child: const Text('Login'),
+                Obx(
+                  () => ElevatedButton(
+                    onPressed: controller.login,
+                    child: const Text('Login'),
+                  ),
                 ),
                 const SizedBox(height: 24),
                 Wrap(
