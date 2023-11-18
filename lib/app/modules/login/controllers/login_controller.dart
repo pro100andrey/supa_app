@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../data/ui/snack/snack.dart';
+
 class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
+  final _isBusy = false.obs;
   bool get isBusy => _isBusy.value;
-  final  _isBusy = false.obs;
 
   final _isObscureText = true.obs;
   bool get isObscureText => _isObscureText.value;
@@ -24,12 +26,16 @@ class LoginController extends GetxController {
     }
 
     _isBusy.value = true;
-
-    await Supabase.instance.client.auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
-
+    try {
+      await Supabase.instance.client.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+    } on AuthException catch (e) {
+      warningToast(e.message);
+    } on Exception catch (e) {
+      errorToast(e.toString());
+    }
     _isBusy.value = false;
   }
 

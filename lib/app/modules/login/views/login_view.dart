@@ -57,8 +57,23 @@ class LoginView extends GetView<LoginController> {
                 const SizedBox(height: 24),
                 Obx(
                   () => ElevatedButton(
-                    onPressed: controller.login,
-                    child: const Text('Login'),
+                    onPressed: controller.isBusy ? null : controller.login,
+                    style: ElevatedButton.styleFrom(
+                      disabledBackgroundColor:
+                          Theme.of(context).primaryColor.withOpacity(.8),
+                      disabledForegroundColor: Colors.white70,
+                    ),
+                    child: controller.isBusy
+                        ? Container(
+                            width: 24,
+                            height: 24,
+                            padding: const EdgeInsets.all(2),
+                            child: const CircularProgressIndicator(
+                              color: Colors.white70,
+                              strokeWidth: 3,
+                            ),
+                          )
+                        : const Text('Login'),
                   ),
                 ),
                 const SizedBox(height: 24),

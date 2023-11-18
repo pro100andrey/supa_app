@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../data/ui/snack/snack.dart';
+
 class SignUpController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+
+  final _isBusy = false.obs;
+  bool get isBusy => _isBusy.value;
 
   final _isObscureText = true.obs;
   bool get isObscureText => _isObscureText.value;
@@ -21,14 +26,21 @@ class SignUpController extends GetxController {
       return;
     }
 
-    // Replace this with supabase auth.
-    final res = await Supabase.instance.client.auth.signUp(
-      email: email,
-      password: password,
-    );
-
-    final session = res.session;
-    final user = res.user;
+    _isBusy.value = true;
+    try {
+      final res = await Supabase.instance.client.auth.signUp(
+        email: email,
+        password: password,
+      );
+      if (res.user!.identities!.isEmpty) {
+        throw Exception('Email exists already. Try type another email');
+      }
+    } on AuthException catch (e) {
+      warningToast(e.message);
+    } on Exception catch (e) {
+      warningToast(e.toString());
+    }
+    _isBusy.value = false;
   }
 
   void togglePasswordInvisible() {
