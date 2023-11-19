@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../data/ui/snack/snack.dart';
+import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
   final emailController = TextEditingController();
@@ -37,6 +38,7 @@ class LoginController extends GetxController {
       errorToast(e.toString());
     }
     _isBusy.value = false;
+    await Get.offAllNamed<dynamic>(Routes.home);
   }
 
   void togglePasswordInvisible() {
