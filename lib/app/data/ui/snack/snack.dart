@@ -16,7 +16,6 @@ void errorToast(String text) {
     text,
     backgroundColor: Colors.red,
     colorText: Colors.white,
-
     snackPosition: SnackPosition.BOTTOM,
     duration: const Duration(seconds: 5),
   );
