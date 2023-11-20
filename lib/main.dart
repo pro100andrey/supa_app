@@ -11,7 +11,9 @@ Future<void> main() async {
   await Get.putAsync(
     () async => ConfigService().init(),
   );
-  loggerInit(isDebug: ConfigService.to.isDebug); // TODO wrap (decorate) to own class
+
+  // TODO(Denis): Wrap (decorate) to own class
+  loggerInit(isDebug: ConfigService.to.isDebug);
 
   await Supabase.initialize(
     url: ConfigService.to.url,
