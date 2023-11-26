@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app/data/common/logger_init.dart';
 import 'app/data/ui/snack/snack.dart';
+import 'app/data/ui/theme/themes.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/config_service.dart';
 
@@ -42,6 +43,7 @@ Future<void> main() async {
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
+      theme: lightTheme,
     ),
   );
 }
