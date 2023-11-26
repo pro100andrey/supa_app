@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../data/ui/snack/snack.dart';
-
 class SignUpController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -27,6 +25,8 @@ class SignUpController extends GetxController {
     }
 
     _isBusy.value = true;
+    update();
+    
     try {
       final res = await Supabase.instance.client.auth.signUp(
         email: email,
@@ -35,12 +35,10 @@ class SignUpController extends GetxController {
       if (res.user!.identities!.isEmpty) {
         throw Exception('Email exists already. Try type another email');
       }
-    } on AuthException catch (e) {
-      warningToast(e.message);
-    } on Exception catch (e) {
-      warningToast(e.toString());
+    } finally {
+      _isBusy.value = false;
+      update();
     }
-    _isBusy.value = false;
   }
 
   void togglePasswordInvisible() {

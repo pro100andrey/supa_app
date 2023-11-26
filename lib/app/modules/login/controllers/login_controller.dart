@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../data/ui/snack/snack.dart';
-import '../../../routes/app_pages.dart';
-
 class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -25,20 +22,17 @@ class LoginController extends GetxController {
     if (!formKey.currentState!.validate()) {
       return;
     }
-
     _isBusy.value = true;
+    update();
     try {
       await Supabase.instance.client.auth.signInWithPassword(
         email: email,
         password: password,
       );
-    } on AuthException catch (e) {
-      warningToast(e.message);
-    } on Exception catch (e) {
-      errorToast(e.toString());
+    } finally {
+      _isBusy.value = false;
+      update();
     }
-    _isBusy.value = false;
-    await Get.offAllNamed<dynamic>(Routes.home);
   }
 
   void togglePasswordInvisible() {
