@@ -7,13 +7,11 @@ ThemeData get lightTheme {
       primary: Colors.lightBlue,
       secondary: Colors.lightBlueAccent,
     ),
-    elevatedButtonTheme: elevatedButtonTheme,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        disabledBackgroundColor: Colors.lightBlue.withOpacity(.8),
+        disabledForegroundColor: Colors.white70,
+      ),
+    ),
   );
 }
-
-final elevatedButtonTheme = ElevatedButtonThemeData(
-  style: ElevatedButton.styleFrom(
-    disabledBackgroundColor: Colors.lightBlue.withOpacity(.8),
-    disabledForegroundColor: Colors.white70,
-  ),
-);
