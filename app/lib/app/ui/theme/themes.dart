@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-ThemeData get lightTheme => ThemeData.light().copyWith(
-      brightness: Brightness.light,
-      colorScheme: ColorScheme.light(
-        primary: Colors.lightBlue,
-        secondary: Colors.lightBlue.shade200,
-      ),
-      elevatedButtonTheme: elevatedButtonTheme,
-    );
+ThemeData get lightTheme {
+  final theme = ThemeData.light();
+  return theme.copyWith(
+    colorScheme: theme.colorScheme.copyWith(
+      primary: Colors.lightBlue,
+      secondary: Colors.lightBlueAccent,
+    ),
+    elevatedButtonTheme: elevatedButtonTheme,
+  );
+}
 
 final elevatedButtonTheme = ElevatedButtonThemeData(
   style: ElevatedButton.styleFrom(
