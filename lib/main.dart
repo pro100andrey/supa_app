@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logging/logging.dart';
@@ -19,7 +20,8 @@ Future<void> main() async {
     () async => ConfigService().init(),
   );
 
-  setupRootLogger(isDebugMode: ConfigService.to.isDebug);
+  setupRootLogger(isDebugMode: kDebugMode);
+  
   final logger = Logger('root');
 
   FlutterError.onError = (details) {
