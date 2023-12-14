@@ -8,8 +8,8 @@ class LoginController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
+  final _isBusy = false.obs;
   bool get isBusy => _isBusy.value;
-  final  _isBusy = false.obs;
 
   final _isObscureText = true.obs;
   bool get isObscureText => _isObscureText.value;
@@ -22,15 +22,17 @@ class LoginController extends GetxController {
     if (!formKey.currentState!.validate()) {
       return;
     }
-
     _isBusy.value = true;
-
-    await Supabase.instance.client.auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
-
-    _isBusy.value = false;
+    update();
+    try {
+      await Supabase.instance.client.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+    } finally {
+      _isBusy.value = false;
+      update();
+    }
   }
 
   void togglePasswordInvisible() {

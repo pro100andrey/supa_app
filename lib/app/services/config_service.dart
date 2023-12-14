@@ -6,6 +6,7 @@ class ConfigService extends GetxService {
 
   late final String url;
   late final String anonKey;
+  late final bool isDebug;
 
   /// Initializes the service.
   Future<ConfigService> init() async {
@@ -19,5 +20,6 @@ class ConfigService extends GetxService {
 
     url = dotenv.env['SUPABASE_URL']!;
     anonKey = dotenv.env['SUPABASE_ANON_KEY']!;
+    isDebug = dotenv.env['APP_DEBUG']!.trim().toLowerCase() == 'true';
   }
 }

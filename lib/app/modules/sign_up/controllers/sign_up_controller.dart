@@ -9,6 +9,9 @@ class SignUpController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
+  final _isBusy = false.obs;
+  bool get isBusy => _isBusy.value;
+
   final _isObscureText = true.obs;
   bool get isObscureText => _isObscureText.value;
 
@@ -21,14 +24,21 @@ class SignUpController extends GetxController {
       return;
     }
 
-    // Replace this with supabase auth.
-    final res = await Supabase.instance.client.auth.signUp(
-      email: email,
-      password: password,
-    );
-
-    final session = res.session;
-    final user = res.user;
+    _isBusy.value = true;
+    update();
+    
+    try {
+      final res = await Supabase.instance.client.auth.signUp(
+        email: email,
+        password: password,
+      );
+      if (res.user!.identities!.isEmpty) {
+        throw Exception('Email exists already. Try type another email');
+      }
+    } finally {
+      _isBusy.value = false;
+      update();
+    }
   }
 
   void togglePasswordInvisible() {
