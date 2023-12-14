@@ -5,19 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "supa_app",
+            "name": "app",
             "request": "launch",
-            "type": "dart",
-            "flutterMode": "debug"
+            "type": "dart"
         },
         {
-            "name": "supa_app (profile mode)",
+            "name": "app (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "supa_app (release mode)",
+            "name": "app (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

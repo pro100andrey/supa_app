@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:localization/localization.dart';
 import 'package:logging/logging.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,7 +22,7 @@ Future<void> main() async {
   );
 
   setupRootLogger(isDebugMode: kDebugMode);
-  
+
   final logger = Logger('root');
 
   FlutterError.onError = (details) {
@@ -46,6 +47,13 @@ Future<void> main() async {
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     ),
   );
 }

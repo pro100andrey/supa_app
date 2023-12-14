@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:localization/localization.dart';
 
 import '../../../data/validator/form_validators.dart';
 import '../../../routes/app_pages.dart';
@@ -18,7 +19,7 @@ class LoginView extends GetView<LoginController> {
         children: [
           Scaffold(
             appBar: AppBar(
-              title: const Text('Login'),
+              title: Text(S.current.login),
               centerTitle: true,
             ),
             body: Form(
@@ -43,22 +44,22 @@ class LoginView extends GetView<LoginController> {
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: controller.login,
-                      child: const Text('Login'),
+                      child: Text(S.current.login),
                     ),
                     const SizedBox(height: 24),
                     Wrap(
                       alignment: WrapAlignment.center,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
-                        const Text(
-                          "Don't have an account?",
+                        Text(
+                          S.current.doNotHaveAnAccount,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(width: 8),
                         TextButton(
                           onPressed: () async =>
                               Get.toNamed<dynamic>(Routes.signUp),
-                          child: const Text('Sign Up'),
+                          child: Text(S.current.signUp),
                         ),
                       ],
                     ),

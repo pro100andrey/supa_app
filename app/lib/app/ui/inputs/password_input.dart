@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 import 'base_text_input.dart';
 
@@ -11,7 +12,7 @@ class PasswordInput extends BaseTextInput {
     VoidCallback? onPressed,
     super.key,
   }) : super(
-          labelText: labelText ?? 'Password',
+          labelText: labelText ?? S.current.password,
           icon: const Icon(Icons.lock),
           suffixIcon: IconButton(
             onPressed: onPressed,

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 import 'base_text_input.dart';
 
 class EmailInput extends BaseTextInput {
-  const EmailInput({
+  EmailInput({
     required super.controller,
     super.validator,
     super.key,
   }) : super(
-          labelText: 'Email',
+          labelText: S.current.email,
           icon: const Icon(Icons.email),
         );
 }

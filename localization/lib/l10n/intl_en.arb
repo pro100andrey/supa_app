@@ -1,3 +1,9 @@
 {
-    "login": "Login"
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "doNotHaveAnAccount": "Don't have an account?",
+    "signUp": "Sign Up",
+    "register": "Register"
 }

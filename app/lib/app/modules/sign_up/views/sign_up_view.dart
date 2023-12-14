@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:localization/localization.dart';
 
 import '../../../data/validator/form_validators.dart';
 import '../../../ui/inputs/email_input.dart';
@@ -17,7 +18,7 @@ class SignUpView extends GetView<SignUpController> {
         children: [
           Scaffold(
             appBar: AppBar(
-              title: const Text('Register'),
+              title: Text(S.current.signUp),
               centerTitle: true,
             ),
             body: Form(
@@ -42,7 +43,7 @@ class SignUpView extends GetView<SignUpController> {
                     const SizedBox(height: 8),
                     Obx(
                       () => PasswordInput(
-                        labelText: 'Confirm Password',
+                        labelText: S.current.confirmPassword,
                         isObscureText: controller.isObscureText,
                         controller: controller.passwordConfirmController,
                         validator: (confirmPassword) => validatePasswordConfirm(
@@ -55,7 +56,7 @@ class SignUpView extends GetView<SignUpController> {
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: controller.signUp,
-                      child: const Text('Sign Up'),
+                      child: Text(S.current.signUp),
                     ),
                   ],
                 ),
