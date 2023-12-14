@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "app",
+			"path": "app"
+		},
+		{
+			"name": "localization",
+			"path": "localization"
+		},
+		{
+			"name": "utils",
+			"path": "utils"
+		},
+	],
+	"settings": {}
+}
