@@ -7,12 +7,12 @@ import 'package:get/get.dart';
 import 'package:localization/localization.dart';
 import 'package:logging/logging.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:utils/utils.dart';
 
-import 'app/data/common/logger_init.dart';
-import 'app/ui/snack/snack.dart';
-import 'app/ui/theme/themes.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/config_service.dart';
+import 'app/ui/snack/snack.dart';
+import 'app/ui/theme/themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

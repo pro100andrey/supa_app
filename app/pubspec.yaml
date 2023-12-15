@@ -16,6 +16,8 @@ dependencies:
     path: ../localization
   logging: ^1.2.0
   supabase_flutter: ^2.0.1
+  utils:
+    path: ../utils 
 
 dev_dependencies:
   flutter_test:

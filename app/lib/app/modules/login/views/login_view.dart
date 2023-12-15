@@ -86,21 +86,6 @@ class LoginView extends GetView<LoginController> {
               return const SizedBox.shrink();
             },
           ),
-          // GetBuilder<LoginController>(
-          //   builder: (controller) {
-          //     debugPrint('LoginView isBusy: ${controller.isBusy}');
-          //     if (controller.isBusy) {
-          //       return const Center(
-          //         child: SizedBox(
-          //           width: 24,
-          //           height: 24,
-          //           child: CircularProgressIndicator(),
-          //         ),
-          //       );
-          //     }
-          //     return const SizedBox.shrink();
-          //   },
-          // ),
         ],
       );
 }
