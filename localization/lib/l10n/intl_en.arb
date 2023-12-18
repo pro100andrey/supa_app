@@ -4,6 +4,5 @@
     "password": "Password",
     "confirmPassword": "Confirm password",
     "doNotHaveAnAccount": "Don't have an account?",
-    "signUp": "Sign Up",
-    "register": "Register"
+    "signUp": "Sign Up"
 }
