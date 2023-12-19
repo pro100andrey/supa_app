@@ -10,7 +10,9 @@ class InitialController extends GetxController {
   void onReady() {
     super.onReady();
 
-    unawaited(_initNavigationFlow());
+    Supabase.instance.client.auth.onAuthStateChange.listen((event) async {
+      await _initNavigationFlow();
+    });
   }
 
   Future<void> _initNavigationFlow() async {

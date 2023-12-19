@@ -1,8 +1,11 @@
 {
     "login": "Логин",
-    "email": "Емейл",
+    "email": "Почта",
     "password": "Пароль",
     "confirmPassword": "Подтвердите пароль",
     "doNotHaveAnAccount": "Нет аккаунта?",
-    "signUp": "Регистрация"
+    "signUp": "Регистрация",
+    "todo": "Список дел",
+    "addTodo": "Добавить дело",
+    "logout": "Выйти"
 }

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:localization/localization.dart';
@@ -7,6 +5,7 @@ import 'package:localization/localization.dart';
 import '../../../data/validator/form_validators.dart';
 import '../../../ui/inputs/email_input.dart';
 import '../../../ui/inputs/password_input.dart';
+import '../../../ui/overlays/progress_overlay.dart';
 import '../controllers/sign_up_controller.dart';
 
 class SignUpView extends GetView<SignUpController> {
@@ -63,23 +62,8 @@ class SignUpView extends GetView<SignUpController> {
               ),
             ),
           ),
-          GetBuilder<SignUpController>(
-            builder: (controller) {
-              if (controller.isBusy) {
-                return AbsorbPointer(
-                  child: Center(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 1,
-                        sigmaY: 1,
-                      ),
-                      child: const CircularProgressIndicator(),
-                    ),
-                  ),
-                );
-              }
-              return const SizedBox.shrink();
-            },
+          Obx(
+            () => ProgressOverlay(show: controller.isBusy),
           ),
         ],
       );

@@ -25,8 +25,7 @@ class SignUpController extends GetxController {
     }
 
     _isBusy.value = true;
-    update();
-    
+
     try {
       final res = await Supabase.instance.client.auth.signUp(
         email: email,
@@ -37,7 +36,6 @@ class SignUpController extends GetxController {
       }
     } finally {
       _isBusy.value = false;
-      update();
     }
   }
 

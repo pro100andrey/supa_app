@@ -109,6 +109,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Todo`
+  String get todo {
+    return Intl.message(
+      'Todo',
+      name: 'todo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add todo`
+  String get addTodo {
+    return Intl.message(
+      'Add todo',
+      name: 'addTodo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

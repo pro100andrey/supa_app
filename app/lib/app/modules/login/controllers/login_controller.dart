@@ -22,8 +22,9 @@ class LoginController extends GetxController {
     if (!formKey.currentState!.validate()) {
       return;
     }
+    
     _isBusy.value = true;
-    update();
+
     try {
       await Supabase.instance.client.auth.signInWithPassword(
         email: email,
@@ -31,7 +32,6 @@ class LoginController extends GetxController {
       );
     } finally {
       _isBusy.value = false;
-      update();
     }
   }
 

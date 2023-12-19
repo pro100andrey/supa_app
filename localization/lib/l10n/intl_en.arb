@@ -4,5 +4,8 @@
     "password": "Password",
     "confirmPassword": "Confirm password",
     "doNotHaveAnAccount": "Don't have an account?",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "todo": "Todo",
+    "addTodo": "Add todo",
+    "logout": "Logout"
 }
